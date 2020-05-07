@@ -18,8 +18,8 @@ except ImportError:
 # Geographic location
 #
 
-latitude = 39.3286
-longitude = -76.6169
+latitude = 39.7337
+longitude = -104.9799
 
 
 
@@ -62,7 +62,7 @@ day_one = datetime.datetime.strptime(xml_day_one, '%Y-%m-%d')
 #
 
 # Open SVG to process
-output = codecs.open('weather-script-preprocess.svg', 'r', encoding='utf-8').read()
+output = codecs.open('/app/weather-script-preprocess.svg', 'r', encoding='utf-8').read()
 
 # Insert icons and temperatures
 output = output.replace('ICON_ONE',icons[0]).replace('ICON_TWO',icons[1]).replace('ICON_THREE',icons[2]).replace('ICON_FOUR',icons[3])
@@ -74,5 +74,11 @@ one_day = datetime.timedelta(days=1)
 days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 output = output.replace('DAY_THREE',days_of_week[(day_one + 2*one_day).weekday()]).replace('DAY_FOUR',days_of_week[(day_one + 3*one_day).weekday()])
 
+# Insert time
+now = datetime.datetime.now()
+current_time = now.strftime("%H:%M:%S")
+output = output.replace('CURRENT_TIME', current_time)
+
+
 # Write output
-codecs.open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
+codecs.open('/app/weather-script-output.svg', 'w', encoding='utf-8').write(output)

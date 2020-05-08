@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1 
+kind: Ingress
+metadata:
+  name: kindle-weather
+spec:
+  rules:
+  - host: kindle-weather.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kindle-weather
+          servicePort: 8080
+
